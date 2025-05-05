@@ -1,7 +1,7 @@
 name: Update Domains
 on:
   schedule:
-    - cron: "* /6 * * *"  # Esegui ogni 6 ore
+    - cron: "0 */6 * * *"  # Esegui ogni 6 ore
   workflow_dispatch:      # Permette di avviare manualmente il workflow
   push:
     branches:    
