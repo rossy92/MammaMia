@@ -27,7 +27,7 @@ jobs:
         
     - name: Update domains in config.json
       run: |
-        python MammaMia/update_domains.py
+        python update_domains.py
 
     - name: Commit and push changes to all branches
       run: |
