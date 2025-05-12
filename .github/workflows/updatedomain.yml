@@ -6,7 +6,7 @@ on:
   push:
     branches:    
       - '**'         # matches every branch 
-      
+
 jobs:
   update-domains:
     runs-on: ubuntu-latest
@@ -25,44 +25,10 @@ jobs:
       run: |
         pip install requests
         
+    - name: List files for debugging
+      run: ls -la
+
     - name: Update domains in config.json
       run: |
         cd ${{ github.workspace }}
         python update_domains.py
-
-    - name: Commit and push changes to all branches
-      run: |
-        git config --global user.email "your-email@example.com"
-        git config --global user.name "Your Name"
-    
-        git fetch --all
-        BRANCHES=$(git branch -r | grep -v '\->' | sed 's/origin\///')
-    
-        for branch in $BRANCHES
-        do
-          echo "Processing branch: $branch"
-    
-          if git rev-parse --verify "$branch"; then
-            git checkout $branch
-          else
-            git checkout -b $branch origin/$branch
-          fi
-    
-          # Stash changes before pulling
-          git stash
-          git pull origin $branch
-          git stash pop || echo "No stashed changes to apply"
-    
-          # Reapply changes if needed
-          python update_domains.py
-    
-          if git diff --exit-code config.json; then
-            echo "No changes in config.json for branch $branch"
-          else
-            git add config.json
-            git commit -m "Aggiornamento domini in config.json"
-            git push origin $branch
-          fi
-        done
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
