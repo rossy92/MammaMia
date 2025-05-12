@@ -48,7 +48,7 @@ def check_redirect(domain, site_key):
         domain = 'http://' + domain
 
     try:
-        response = requests.get(domain, allow_redirects=True)
+        response = requests.get(domain, allow_redirects=True, verify=False)  # Disable SSL verification
         final_url = response.url
         final_domain = extract_full_domain(final_url, site_key)
         return domain, final_domain
