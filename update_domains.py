@@ -38,17 +38,11 @@ def extract_full_domain(domain, site_key):
         return f"https://{netloc}"
 
 def check_redirect(domain, site_key):
-    """
-    Verifica se un dominio fa un redirect e restituisce il dominio finale completo con https:// e www.
-    :param domain: Dominio da verificare.
-    :param site_key: Nome del sito per decidere il prefisso.
-    :return: Tuple con l'URL originale e il dominio finale completo.
-    """
     if not domain.startswith(('http://', 'https://')):
         domain = 'http://' + domain
 
     try:
-        response = requests.get(domain, allow_redirects=True)
+        response = requests.get(domain, allow_redirects=True, verify=False)  # Add verify=False
         final_url = response.url
         final_domain = extract_full_domain(final_url, site_key)
         return domain, final_domain
