@@ -228,10 +228,10 @@ async def addon_stream(request: Request,config, type, id,):
                 provider_name = provider_map[provider]
                 provider_maps[provider_name] = "1"
     if "MFP[" in config:
-    # Extract proxy data between "MFP(" and ")"
-        mfp_data = config.split("MFP[")[1].split(")")[0]  
-    # Split the data by comma to get proxy URL and password
-        MFP_url, MFP_password = mfp_data.split(",")
+    mfp_data = config.split("MFP[")[1].split("]")[0]
+    MFP_url, MFP_password = mfp_data.split(",")
+    MFP_url = MFP_url.strip()
+    MFP_password = MFP_password.strip()
     # Store them in a list
         MFP_CREDENTIALS = [MFP_url, MFP_password]
         if MFP_url and MFP_password:
