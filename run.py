@@ -227,7 +227,7 @@ async def addon_stream(request: Request,config, type, id,):
             if provider in provider_map:
                 provider_name = provider_map[provider]
                 provider_maps[provider_name] = "1"
-    if "MFP[" in config:
+if "MFP[" in config:
     mfp_data = config.split("MFP[")[1].split("]")[0]
     MFP_url, MFP_password = mfp_data.split(",")
     MFP_url = MFP_url.strip()
