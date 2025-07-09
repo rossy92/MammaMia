@@ -37,6 +37,8 @@ if Global_Proxy == "1":
 }
 else:
     proxies = {}
+if Global_Proxy == "1" and (not PROXY_CREDENTIALS or PROXY_CREDENTIALS == ""):
+    raise Exception("PROXY_CREDENTIALS non valorizzato. Controlla le variabili di ambiente!")    
 # Configure config
 MYSTERIUS = config.MYSTERIUS
 DLHD = config.DLHD
