@@ -63,7 +63,7 @@ async def get_version(client):
         random_headers = headers.generate()
         random_headers['Referer'] = f"{SC_DOMAIN}/"
         random_headers['Origin'] = f"{SC_DOMAIN}"
-        base_url = f'{SC_DOMAIN}/request-a-title' 
+        base_url = f'{SC_DOMAIN}/it/request-a-title' 
         response = await client.get(ForwardProxy + base_url, headers=random_headers, allow_redirects = True, impersonate="chrome124", proxies = proxies)
         #Soup the response
         soup = BeautifulSoup(response.text, "lxml")
