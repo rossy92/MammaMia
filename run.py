@@ -37,8 +37,6 @@ if Global_Proxy == "1":
 }
 else:
     proxies = {}
-if Global_Proxy == "1" and (not PROXY_CREDENTIALS or PROXY_CREDENTIALS == ""):
-    raise Exception("PROXY_CREDENTIALS non valorizzato. Controlla le variabili di ambiente!")    
 # Configure config
 MYSTERIUS = config.MYSTERIUS
 DLHD = config.DLHD
@@ -105,17 +103,18 @@ def respond_with(data):
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Headers'] = '*'
     return resp
-async def transform_mfp(mfp_stream_url, client):
+async def transform_mfp(mfp_stream_url,client):
     try:
         response = await client.get(mfp_stream_url)
         data = response.json()
-        print("DEBUG MFP RESPONSE:", data)  # <--- AGGIUNGI QUESTA RIGA
         url = data['mediaflow_proxy_url'] + "?api_password=" + data['query_params']['api_password'] + "&d=" + urllib.parse.quote(data['destination_url'])
         for i in data['request_headers']:
             url += f"&h_{i}={urllib.parse.quote(data['request_headers'][i])}"
+
+
         return url
     except Exception as e:
-        print("Transforing MFP failed", e)
+        print("Transforing MFP failed",e)
         return None
 @app.get('/config')
 def config():
@@ -223,26 +222,22 @@ async def addon_stream(request: Request,config, type, id,):
         config_providers = config.split('%7C')
     provider_maps = {name: "0" for name in provider_map.values()}
     for provider in config_providers:
-        if provider in provider_map:
-            provider_name = provider_map[provider]
-            provider_maps[provider_name] = "1"
-
-    # ---- Qui inizia il parsing di MFP, DEVE essere indentato dentro la funzione! ----
-    MFP = "0"
-    MFP_CREDENTIALS = []
+            if provider in provider_map:
+                provider_name = provider_map[provider]
+                provider_maps[provider_name] = "1"
     if "MFP[" in config:
-        mfp_data = config.split("MFP[")[1].split("]")[0]
+    # Extract proxy data between "MFP(" and ")"
+        mfp_data = config.split("MFP[")[1].split(")")[0]  
+    # Split the data by comma to get proxy URL and password
         MFP_url, MFP_password = mfp_data.split(",")
-        MFP_url = MFP_url.strip()
-        MFP_password = MFP_password.strip()
+        MFP_password = MFP_password[:-2]
+    # Store them in a list
         MFP_CREDENTIALS = [MFP_url, MFP_password]
         if MFP_url and MFP_password:
             MFP = "1"
-        else:
-            MFP = "0"
-    # ---- Da qui in poi il resto della funzione ----
+    else:
+        MFP = "0"
     async with AsyncSession(proxies = proxies) as client:
-        ...
         if type == "tv":
             for channel in STREAM["channels"]:
                 if channel["id"] == id:
@@ -419,4 +414,3 @@ async def addon_stream(request: Request,config, type, id,):
 if __name__ == '__main__':
     import uvicorn
     uvicorn.run("run:app", host=HOST, port=PORT, log_level="info")
-    
