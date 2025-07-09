@@ -224,20 +224,26 @@ async def addon_stream(request: Request,config, type, id,):
         config_providers = config.split('%7C')
     provider_maps = {name: "0" for name in provider_map.values()}
     for provider in config_providers:
-            if provider in provider_map:
-                provider_name = provider_map[provider]
-                provider_maps[provider_name] = "1"
-if "MFP[" in config:
-    mfp_data = config.split("MFP[")[1].split("]")[0]
-    MFP_url, MFP_password = mfp_data.split(",")
-    MFP_url = MFP_url.strip()
-    MFP_password = MFP_password.strip()
-    MFP_CREDENTIALS = [MFP_url, MFP_password]
-    if MFP_url and MFP_password:
-        MFP = "1"
-    else:
-        MFP = "0"
+        if provider in provider_map:
+            provider_name = provider_map[provider]
+            provider_maps[provider_name] = "1"
+
+    # ---- Qui inizia il parsing di MFP, DEVE essere indentato dentro la funzione! ----
+    MFP = "0"
+    MFP_CREDENTIALS = []
+    if "MFP[" in config:
+        mfp_data = config.split("MFP[")[1].split("]")[0]
+        MFP_url, MFP_password = mfp_data.split(",")
+        MFP_url = MFP_url.strip()
+        MFP_password = MFP_password.strip()
+        MFP_CREDENTIALS = [MFP_url, MFP_password]
+        if MFP_url and MFP_password:
+            MFP = "1"
+        else:
+            MFP = "0"
+    # ---- Da qui in poi il resto della funzione ----
     async with AsyncSession(proxies = proxies) as client:
+        ...
         if type == "tv":
             for channel in STREAM["channels"]:
                 if channel["id"] == id:
