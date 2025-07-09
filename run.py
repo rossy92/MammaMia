@@ -105,18 +105,17 @@ def respond_with(data):
     resp.headers['Access-Control-Allow-Origin'] = '*'
     resp.headers['Access-Control-Allow-Headers'] = '*'
     return resp
-async def transform_mfp(mfp_stream_url,client):
+async def transform_mfp(mfp_stream_url, client):
     try:
         response = await client.get(mfp_stream_url)
         data = response.json()
+        print("DEBUG MFP RESPONSE:", data)  # <--- AGGIUNGI QUESTA RIGA
         url = data['mediaflow_proxy_url'] + "?api_password=" + data['query_params']['api_password'] + "&d=" + urllib.parse.quote(data['destination_url'])
         for i in data['request_headers']:
             url += f"&h_{i}={urllib.parse.quote(data['request_headers'][i])}"
-
-
         return url
     except Exception as e:
-        print("Transforing MFP failed",e)
+        print("Transforing MFP failed", e)
         return None
 @app.get('/config')
 def config():
