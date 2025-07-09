@@ -232,10 +232,9 @@ if "MFP[" in config:
     MFP_url, MFP_password = mfp_data.split(",")
     MFP_url = MFP_url.strip()
     MFP_password = MFP_password.strip()
-    # Store them in a list
-        MFP_CREDENTIALS = [MFP_url, MFP_password]
-        if MFP_url and MFP_password:
-            MFP = "1"
+    MFP_CREDENTIALS = [MFP_url, MFP_password]
+    if MFP_url and MFP_password:
+        MFP = "1"
     else:
         MFP = "0"
     async with AsyncSession(proxies = proxies) as client:
