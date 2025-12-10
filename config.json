@@ -35,7 +35,7 @@
               "GH_PROXY":"1"
           },
           "Eurostreaming":{
-            "url": "https://eurostreamings.mom",
+            "url": "https://eurostreamings.bar",
             "enabled": "1",
             "ES_ForwardProxy": "0",
             "ES_PROXY": "1"
