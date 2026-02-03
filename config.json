@@ -29,7 +29,7 @@
               "GH_PROXY":"1"
           },
           "Eurostreaming":{
-            "url": "https://eurostreamings.run",
+            "url": "https://eurostream.ing",
             "enabled": "1",
             "ES_ForwardProxy": "0",
             "ES_PROXY": "1"
