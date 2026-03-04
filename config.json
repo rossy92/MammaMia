@@ -17,7 +17,7 @@
               "enabled":"1"
           },
           "Guardaserie":{
-              "url": "https://guardaserietv.beer",
+              "url": "https://guardaserietv.bond",
               "enabled":"1",
               "GS_ForwardProxy":"0",
               "GS_PROXY":"1"
@@ -29,13 +29,13 @@
               "GH_PROXY":"1"
           },
           "Eurostreaming":{
-            "url": "https://eurostreamings.life",
+            "url": "https://eurostream.ing",
             "enabled": "1",
             "ES_ForwardProxy": "0",
             "ES_PROXY": "1"
           },  
           "Guardaflix":{
-            "url": "https://guardaplay.blog",
+            "url": "https://guardaplay.space",
             "enabled": "1",
             "GF_ForwardProxy": "0",
             "GF_PROXY": "1"
