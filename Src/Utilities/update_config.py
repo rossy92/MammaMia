@@ -1,4 +1,4 @@
-link = 'https://raw.githubusercontent.com/Arrowar/SC_Domains/main/domains.json'
+link = 'https://raw.githubusercontent.com/AstraeLabs/Domains/main/domains.json'
 import json
 import os
 import logging
@@ -43,12 +43,14 @@ async def update_site(client,site_name):
         return False
 async def update_all_sites(client):
     try:
-        sites = [['cb01new','CB01'],['guardaserie','Guardaserie'],['eurostreamings','Eurostreaming'],['guardaplay','Guardaflix'],['guardoserie_2','Guardoserie'],['animeworld','AnimeWorld'],['toonitalia','Toonitalia']]
+        sites = [['cb01new','CB01'],['guardaserie','Guardaserie'],['eurostreaming','Eurostreaming'],['guardaplay','Guardaflix'],['guardoserie_2','Guardoserie'],['animeworld','AnimeWorld'],['toonitalia','Toonitalia']]
         for item in sites:
             domain = await fetch_domain(client,item)
             write_config(domain,item)
+        return True
     except Exception as e:
         logger.info('Failed to update domains: ',e)
+        return False
 async def test_update_site():
     from curl_cffi.requests import AsyncSession
     async with AsyncSession() as client:
