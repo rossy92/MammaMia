@@ -17,13 +17,13 @@
               "enabled":"1"
           },
           "Guardaserie":{
-              "url": "https://guardaserietv.beer",
+              "url": "https://guarda-serie.ovh",
               "enabled":"1",
               "GS_ForwardProxy":"0",
               "GS_PROXY":"1"
           },
           "GuardaHD":{
-              "url": "https://mostraguarda.stream",
+              "url": "https://guardahd.stream",
               "enabled":"1",
               "GH_ForwardProxy":"0",
               "GH_PROXY":"1"
