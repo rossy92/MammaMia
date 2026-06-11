@@ -62,7 +62,7 @@
             "url": "https://toonitalia.xyz",
             "enabled": "1",
             "TI_ForwardProxy": "0",
-            "TI_PROXY": "0"
+            "TI_PROXY": "1"
         },
         "OnlineSerieTV": {
             "url": "https://onlineserietv.lol",
