@@ -9,7 +9,7 @@
             "enabled": "1"
         },
         "CB01": {
-            "url": "https://cb01uno.click",
+            "url": "https://cb01uno.blog",
             "CB_PROXY": "1",
             "CB_ForwardProxy": "0",
             "MX_ForwardProxy": "0",
@@ -20,7 +20,7 @@
             "url": "https://guarda-serie.click",
             "enabled": "1",
             "GS_ForwardProxy": "0",
-            "GS_PROXY": "1"
+            "GS_PROXY": "0"
         },
         "GuardaHD": {
             "url": "https://mostraguarda.stream",
@@ -32,7 +32,7 @@
             "url": "https://eurostream.ing",
             "enabled": "1",
             "ES_ForwardProxy": "0",
-            "ES_PROXY": "0"
+            "ES_PROXY": "1"
         },
         "Guardaflix": {
             "url": "https://guardaplay.live",
@@ -62,25 +62,25 @@
             "url": "https://toonitalia.xyz",
             "enabled": "1",
             "TI_ForwardProxy": "0",
-            "TI_PROXY": "1"
+            "TI_PROXY": "0"
         },
         "OnlineSerieTV": {
-            "url": "https://onlineserietv.lol",
+            "url": "https://onlineserietv.mom",
             "enabled": "1",
             "OST_ForwardProxy": "0",
-            "OST_PROXY": "0"
+            "OST_PROXY": "1"
         },
         "Vidxgo": {
             "url": "https://v.vidxgo.co",
             "enabled": "1",
             "VD_ForwardProxy": "0",
-            "VD_PROXY": "1"
+            "VD_PROXY": "0"
         }
     },
     "Captcha": {
         "Uprot": {
             "UT_ForwardProxy": "0",
-            "UT_PROXY": "0"
+            "UT_PROXY": "1"
         }
     },
     "General": {
@@ -92,4 +92,3 @@
         "level": "info",
         "Global_Proxy": "0"
     }
-}
