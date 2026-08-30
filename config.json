@@ -74,7 +74,7 @@
             "url": "https://v.vidxgo.co",
             "enabled": "1",
             "VD_ForwardProxy": "0",
-            "VD_PROXY": "1"
+            "VD_PROXY": "0"
         }
     },
     "Captcha": {
