@@ -22,27 +22,14 @@ if VX_PROXY == "1":
     PROXY_CREDENTIALS = env_vars.get('PROXY_CREDENTIALS')
     proxy_list = json.loads(PROXY_CREDENTIALS)
     proxy = random.choice(proxy_list)
-if proxy == "":
-        proxies2 = {}
-    else:
-        proxies2 = {
-            "http": proxy,
-            "https": proxy
-        }      
+proxies2 = {} if proxy == "" else {"http": proxy, "https": proxy}      
     if SC_PROXY == "1":
         PROXY_CREDENTIALS = "[]"
         proxy_list = []
         proxy = ""
-        
-        if proxy == "":
-            proxies = {}
-        else:
-            proxies = {
-                "http": proxy,
-                "https": proxy
-            }   
+        proxies = {} if proxy == "" else {"http": proxy, "https": proxy}   
         if VX_PROXY == "1":
-            proxies2 = proxies        proxies2 = proxies
+            proxies2 = proxies    
     else:
         proxies = {
             "http": proxy,
