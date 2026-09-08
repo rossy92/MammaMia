@@ -30,19 +30,20 @@ else:
         "https": proxy
     }      
 if SC_PROXY == "1":
-    PROXY_CREDENTIALS = env_vars.get('PROXY_CREDENTIALS')
-    if not PROXY_CREDENTIALS:
-        proxy_list = []
-    else:
-        proxy_list = json.loads(PROXY_CREDENTIALS)
-        
-    if len(proxy_list) > 0:
-        proxy = random.choice(proxy_list)
-    else:
-        proxy = ""
-        
+    # FORZATURA TOTALE: Ignora qualsiasi variabile d'ambiente mancante
+    PROXY_CREDENTIALS = "[]"
+    proxy_list = []
+    proxy = ""
+    
     if proxy == "":
         proxies = {}
+    else:
+        proxies = {
+            "http": proxy,
+            "https": proxy
+        }   
+    if VX_PROXY == "1":
+        proxies2 = proxies
     else:
         proxies = {
             "http": proxy,
