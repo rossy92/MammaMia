@@ -23,16 +23,24 @@ if VX_PROXY == "1":
     proxy_list = json.loads(PROXY_CREDENTIALS)
     proxy = random.choice(proxy_list)
     if proxy == "":
-        proxies2 = {}
-    else:
-        proxies2 = {
-            "http": proxy,
-            "https": proxy
-        }      
+    proxies2 = {}
+else:
+    proxies2 = {
+        "http": proxy,
+        "https": proxy
+    }      
 if SC_PROXY == "1":
     PROXY_CREDENTIALS = env_vars.get('PROXY_CREDENTIALS')
-    proxy_list = json.loads(PROXY_CREDENTIALS)
-    proxy = random.choice(proxy_list)
+    if not PROXY_CREDENTIALS:
+        proxy_list = []
+    else:
+        proxy_list = json.loads(PROXY_CREDENTIALS)
+        
+    if len(proxy_list) > 0:
+        proxy = random.choice(proxy_list)
+    else:
+        proxy = ""
+        
     if proxy == "":
         proxies = {}
     else:
@@ -42,7 +50,6 @@ if SC_PROXY == "1":
         }   
     if VX_PROXY == "1":
         proxies2 = proxies
- 
 SC_ForwardProxy = config.SC_ForwardProxy
 VX_ForwardProxy = config.VX_ForwardProxy
 if SC_ForwardProxy == "1":
